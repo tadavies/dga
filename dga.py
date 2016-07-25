@@ -29,7 +29,7 @@ def main():
                 }
                 actions.append(head)
         #generate necurs domains - 10000 per 4 days
-        for seed in (5,7,9,11)
+        for seed in [5,7,9,13]
             date = d.strftime('%Y-%m-%d')
             obj = necurs.dga(seed, d)
             for domain in obj.getDomains():

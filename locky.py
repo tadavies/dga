@@ -1,5 +1,3 @@
-import socket
-import argparse
 from datetime import datetime
 def ror32(v, s):
     v &= 0xFFFFFFFF
@@ -55,31 +53,4 @@ class dga:
         tld_i = ((k + 0x27100001) & 0xFFFFFFFF) % len(self.tlds)
         domain += self.tlds[tld_i]
         return domain
-
-
-if __name__ == "__main__":
-    parser = argparse.ArgumentParser()
-    parser.add_argument("-d", "--date", help="date for which to generate domains")
-    parser.add_argument("-s", "--seed", help="seed for which to generate domains")
-    parser.add_argument("-o", "--output", help="dont resolve domains just print")
-    args = parser.parse_args()
-
-    if args.date:
-        d = datetime.strptime(args.date, "%Y-%m-%d")
-    else:
-        d = datetime.now()
-    if args.seed:
-        domains = []
-    
-        if args.output:
-            for domain in domains:
-                print domain
-        else:
-            for domain in domains:
-                ip = getIP(domain)
-                if ip:
-                    print(domain, ip)
-                else:
-                    print(domain, "n/a")
-        
 
