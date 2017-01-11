@@ -1,7 +1,11 @@
 from core.dga import dga
 from datetime import datetime
 
+SEED_VALUES = [5,7,9,13]
+MAX_DOMAINS = 2048
+FREQUENCY = 4
 TLDS = ['tj','in','jp','tw','ac','cm','la','mn','so','sh','sc','nu','nf','mu', 'ms','mx','ki','im','cx','cc','tv','bz','me','eu','de','ru','co','su','pw','kz','sx','us','ug','ir','to','ga','com','net','org','biz','xxx','pro','bit']
+
 
 class necurs_dga(dga):
 

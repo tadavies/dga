@@ -1,6 +1,7 @@
 from datetime import datetime
-from core.dga import extractor
+from core.dga import dga
 
+MAX_DOMAINS = 12
 TLDS = ['ru', 'info', 'biz', 'click', 'su', 'work', 'pl', 'org', 'pw', 'xyz']
 
 def ror32(v, s):
