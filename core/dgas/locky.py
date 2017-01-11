@@ -1,4 +1,8 @@
 from datetime import datetime
+from core.dga import extractor
+
+TLDS = ['ru', 'info', 'biz', 'click', 'su', 'work', 'pl', 'org', 'pw', 'xyz']
+
 def ror32(v, s):
     v &= 0xFFFFFFFF
     return ((v >> s) | (v << (32-s))) & 0xFFFFFFFF
@@ -7,17 +11,8 @@ def rol32(v, s):
     v &= 0xFFFFFFFF
     return ((v << s) | (v >> (32-s))) & 0xFFFFFFFF
 
-class dga:
-    def __init__(self, seed=None, date=None):
-        self.seed = seed
-        self.date = date
-        self.domains = []
-        self.tlds = ['ru', 'info', 'biz', 'click', 'su', 'work', 'pl', 'org', 'pw', 'xyz']
-        self.generateDomains()
 
-    def getDomains(self):
-        return self.domains
-    
+class locky_dga(dga):
     def generateDomains(self):
         for i in range(12):
             self.domains.append(self.genDomain(i))
@@ -50,7 +45,7 @@ class dga:
 
         domain += '.'
         k = ror32(k*0xB11924E1, shift)
-        tld_i = ((k + 0x27100001) & 0xFFFFFFFF) % len(self.tlds)
-        domain += self.tlds[tld_i]
+        tld_i = ((k + 0x27100001) & 0xFFFFFFFF) % len(TLDS)
+        domain += self.tlds[TLDS]
         return domain
 
