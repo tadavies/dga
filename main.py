@@ -2,6 +2,14 @@ import sys
 import socket
 import inspect
 import argparse
+import core.dgas
+from datetime import datetime
+
+def reflectionTest():
+	for name, obj in inspect.getmembers(core.extractors):
+		if inspect.isclass(obj):
+			print name
+
 
 def getIP(d):
 	try:
