@@ -14,7 +14,7 @@ class dga(object):
 		self.seed = s
 
 	def getDomains(self):
-		return domains
+		return self.domains
 
 	def generateDomains(self):
 		pass

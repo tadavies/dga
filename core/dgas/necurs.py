@@ -1,14 +1,15 @@
 from core.dga import dga
 from datetime import datetime
 
-SEED_VALUES = [5,7,9,13]
-MAX_DOMAINS = 2048
-FREQUENCY = 4
-TLDS = ['tj','in','jp','tw','ac','cm','la','mn','so','sh','sc','nu','nf','mu', 'ms','mx','ki','im','cx','cc','tv','bz','me','eu','de','ru','co','su','pw','kz','sx','us','ug','ir','to','ga','com','net','org','biz','xxx','pro','bit']
+config = {
+    'seeds' : [5,7,9,13],
+    'maxDomains' : 2048,
+    'frequecny' : 4,
+    'tlds' : ['tj','in','jp','tw','ac','cm','la','mn','so','sh','sc','nu','nf','mu', 'ms','mx','ki','im','cx','cc','tv','bz','me','eu','de','ru','co','su','pw','kz','sx','us','ug','ir','to','ga','com','net','org','biz','xxx','pro','bit']
+}
 
 
 class necurs_dga(dga):
-
     def genDomain(self,sequence_nr):
         domain = ""
         n = self.pseudo_random(self.date.year)
@@ -23,13 +24,14 @@ class necurs_dga(dga):
             domain += chr(ch)
             n += 0xABBEDF
             n = self.pseudo_random(n) 
-        tld = self.tlds[self.mod64(n, 43)]
+        tld = self.config['tlds'][self.mod64(n, 43)]
         domain += '.' + tld
         return domain
 
     def generateDomains(self):
+        self.config = config
         if self.seed != None and self.date != None:
-            for x in range(2048):
+            for x in range(self.config['maxDomains']):
                 self.domains.append(self.genDomain(x))
             return True
         return False
